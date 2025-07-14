@@ -1,0 +1,255 @@
+/* General Body and HTML Setup */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+    background-color: #f8f9fa; /* Softer background */
+    color: #333;
+}
+
+/* --- Navbar Styling --- */
+#navbar {
+    position: fixed; /* Keep navbar at the top */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full viewport width */
+    height: 55px;
+    background-color: #004d40; /* Dark green for navbar */
+    color: white;
+    display: flex;
+    align-items: center; /* Vertically center items */
+    padding: 0 20px;
+    box-sizing: border-box; /* Include padding in element's total width/height */
+    z-index: 1000; /* Ensure navbar is on top of other content */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+}
+
+#navbar img {
+    height: 40px; /* Adjust logo size */
+    width: auto;
+    margin-right: 15px; /* Space between logo and text */
+}
+
+#navbar span { /* Text "Kehadiran Dosen" in navbar */
+    font-size: 1.4em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* --- Main Content Title --- */
+h1 {
+    margin-top: 80px; /* Space from navbar */
+    text-align: center;
+    padding: 20px 0 10px;
+    color: #004d40;
+}
+
+/* --- List Container Styling --- */
+#daftar-dosen {
+    list-style: none; /* Remove bullet points */
+    padding: 0 10px; /* Horizontal padding for the list */
+    margin: 0 auto; /* Center the list on the page */
+    max-width: calc(100vw - 200px); /* Limit max width for readability on large screens */
+    display: flex; /* Enable Flexbox for column layout */
+    flex-wrap: wrap; /* Allow items to wrap to the next row */
+    justify-content: center; /* Center items if they don't fill the entire width */
+
+    /* Key for internal scrolling: */
+    max-height: calc(100vh - 180px); /* 100vh - navbar height - h1 height - surrounding padding */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds max-height */
+
+    /* Custom Scrollbar Styling (for better appearance) */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #00796b #f1f1f1; /* Thumb dan Track colors for Firefox */
+}
+
+/* Webkit (Chrome, Safari, Edge) Scrollbar Styling */
+#daftar-dosen::-webkit-scrollbar {
+    width: 8px;
+}
+
+#daftar-dosen::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#daftar-dosen::-webkit-scrollbar-thumb {
+    background: #00796b; /* Scrollbar thumb color */
+    border-radius: 4px;
+}
+
+/* --- Individual List Item (Dosen) Styling --- */
+#daftar-dosen li {
+    font-size: 1em; /* Smaller font for better fit */
+    padding: 8px 5px; /* Reduced vertical and horizontal padding */
+    margin: 3px; /* Smaller margin between items */
+    color: white; /* Text color inside list item */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer; /* Indicate clickable item */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    text-align: center; /* Center text within the item */
+    overflow: hidden; /* Crucial: Hides text outside the li boundary for the vertical animation */
+    white-space: nowrap; /* Forces text into a single line */
+    position: relative; /* Base for absolutely positioned content */
+    min-height: 30px; /* Ensure a minimum height for consistent appearance */
+    display: flex; /* Use flex to vertically center content if needed */
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* Horizontally center content */
+
+    /* Flexbox calculation for 7 columns: */
+    flex: 0 0 calc(25% - 6px); /* (100% / 7) - (2 * margin) */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+#daftar-dosen li:hover {
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow on hover */
+}
+
+.footer-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 55px;
+    background-color: #004d40;
+}
+
+.hadir {
+    background-color: #28a745; /* Deeper green */
+    border-color: #218838;
+}
+
+.main-container {
+    position: fixed;
+    width: 100vw;
+    margin-top: 100px;
+}
+
+.nav-button {
+    width: 20%;
+    text-align: right;
+}
+
+.nav-button .button {
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.nav-logo {
+    width: 20%;
+}
+
+.nav-title {
+    width: 60%;
+    text-align: center;
+}
+
+.tidak-hadir {
+    background-color: #dc3545; /* Deeper red */
+    border-color: #c82333;
+}
+
+/* --- Vertical Scrolling Text Styling --- */
+.scroll-item {
+    position: absolute; /* Position relative to parent li */
+    width: 100%; /* Take full width of parent */
+    top: 50%; /* Center vertically initially */
+    transform: translateY(-50%); /* Adjust for true vertical centering */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transitions */
+    text-align: center; /* Ensure text is centered within its span */
+    box-sizing: border-box; /* Include padding in width calculation */
+    padding: 0 5px; /* Small horizontal padding to keep text off edges */
+
+    /* Variables for animation control from JS */
+    animation-duration: var(--animation-duration);
+    animation-timing-function: ease-in-out; /* Smooth start/end */
+    animation-iteration-count: infinite;
+}
+
+/* Animation specific to name and status */
+.scroll-item.name {
+    animation-name: slideUpAndDownName;
+}
+
+.scroll-item.status {
+    animation-name: slideUpAndDownStatus;
+}
+
+/* Keyframes for Name sliding up and down */
+@keyframes slideUpAndDownName {
+    0% { transform: translateY(-50%) translateY(0); opacity: 1; } /* Centered, visible */
+    25% { transform: translateY(-50%) translateY(-100%); opacity: 0; } /* Move up, disappear */
+    50% { transform: translateY(-50%) translateY(100%); opacity: 0; } /* Stay hidden below */
+    75% { transform: translateY(-50%) translateY(0); opacity: 1; } /* Move back to center, appear */
+    100% { transform: translateY(-50%) translateY(0); opacity: 1; } /* Stay visible for loop */
+}
+
+/* Keyframes for Status sliding up and down (offset from Name) */
+@keyframes slideUpAndDownStatus {
+    0% { transform: translateY(-50%) translateY(100%); opacity: 0; } /* Start hidden below */
+    25% { transform: translateY(-50%) translateY(0); opacity: 1; } /* Move up, appear */
+    50% { transform: translateY(-50%) translateY(0); opacity: 1; } /* Stay visible */
+    75% { transform: translateY(-50%) translateY(-100%); opacity: 0; } /* Move up, disappear */
+    100% { transform: translateY(-50%) translateY(100%); opacity: 0; } /* Stay hidden below for loop */
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 1200px) { /* Example: 6 columns */
+    #daftar-dosen li {
+        flex: 0 0 calc(25% - 6px);
+    }
+}
+
+@media (max-width: 992px) { /* Example: 5 columns */
+    #daftar-dosen li {
+        flex: 0 0 calc(20% - 6px);
+    }
+}
+
+@media (max-width: 768px) { /* Example: 4 columns */
+    #daftar-dosen li {
+        flex: 0 0 calc(25% - 6px);
+        font-size: 0.8em;
+    }
+    #navbar span {
+        font-size: 1.2em;
+    }
+    #navbar {
+        height: 50px;
+    }
+    h1 {
+        margin-top: 70px;
+    }
+    #daftar-dosen {
+        max-height: calc(100vh - 160px);
+    }
+}
+
+@media (max-width: 576px) { /* Example: 3 columns */
+    #daftar-dosen li {
+        flex: 0 0 calc(33.333% - 6px);
+        padding: 6px 3px;
+        margin: 2px;
+    }
+    #navbar {
+        padding: 0 10px;
+    }
+    #navbar img {
+        height: 35px;
+    }
+    #navbar span {
+        font-size: 1em;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 400px) { /* Example: 2 columns */
+    #daftar-dosen li {
+        flex: 0 0 calc(50% - 6px);
+    }
+}
