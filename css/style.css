@@ -50,7 +50,7 @@ h1 {
     margin: 0 auto; /* Center the list on the page */
     max-width: 100vw; /* Limit max width for readability on large screens */
     display: flex; /* Enable Flexbox for column layout */
-    flex-wrap: wrap; /* Allow items to wrap to the next row */
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center; /* Center items if they don't fill the entire width */
 
