@@ -26,49 +26,10 @@
   </div>
   <div class="footer-container">
     <div>
-      <button>
+      <button class="button">
         reset availibility
       </button>
     </div>
   </div>
   <script src="js/script.js"></script>
-  <script>
-    const ul = document.getElementById("daftar-dosen");
-
-    function renderList() {
-      ul.innerHTML = ""; // Clear the list before re-rendering
-
-      const animationDurationPerItem = 8; // Total seconds for one full name-status cycle
-
-      dosenList.forEach((dosen, index) => {
-        const li = document.createElement("li");
-        li.className = dosen.hadir ? "hadir" : "tidak-hadir";
-
-        const nameSpan = document.createElement("span");
-        nameSpan.className = "scroll-item name";
-        nameSpan.textContent = dosen.nama; // Just the name
-
-        const statusSpan = document.createElement("span");
-        statusSpan.className = "scroll-item status";
-        statusSpan.textContent = dosen.hadir ? "Available" : "Unavailable"; // Just the status
-
-        li.appendChild(nameSpan);
-        li.appendChild(statusSpan);
-
-        // Set total animation duration for this li
-        li.style.setProperty('--animation-duration', `${animationDurationPerItem}s`);
-
-        // Add click listener
-        li.addEventListener("click", () => {
-          dosen.hadir = !dosen.hadir; // Toggle status
-          renderList(); // Re-render the entire list to reflect changes
-        });
-
-        ul.appendChild(li);
-      });
-    }
-
-    // Call initial render after DOM is fully loaded
-    document.addEventListener('DOMContentLoaded', renderList);
-</script>
 </body>
