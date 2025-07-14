@@ -95,3 +95,4 @@ const dosenList = [
 
     // Call initial render after DOM is fully loaded
     document.addEventListener('DOMContentLoaded', renderList);
+
