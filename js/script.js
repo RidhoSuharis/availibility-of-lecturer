@@ -58,6 +58,9 @@ const dosenList = [
       { nama: "Ridho Suharis, M.Mat", hadir: false }
     ];
 
+// update jam saat refresh halaman
+updateClock();
+
     const ul = document.getElementById("daftar-dosen");
 
     function renderList() {
@@ -95,3 +98,15 @@ const dosenList = [
 
     // Call initial render after DOM is fully loaded
     document.addEventListener('DOMContentLoaded', renderList);
+
+function updateClock() {
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const seconds = now.getSeconds().toString().padStart(2, '0');
+  const currentTime = `${hours}:${minutes}:${seconds}`;
+  document.getElementById('online-clock').textContent = currentTime;
+}
+
+// Update jam setiap 1 detik
+setInterval(updateClock, 1000);

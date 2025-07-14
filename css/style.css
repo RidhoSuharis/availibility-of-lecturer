@@ -105,6 +105,11 @@ h1 {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow on hover */
 }
 
+#online-clock {
+    color: white;
+    font-weight: bold;
+}
+
 .footer-container {
     position: fixed;
     bottom: 0;
